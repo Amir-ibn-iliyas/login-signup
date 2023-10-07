@@ -1,0 +1,452 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kalam';
+}
+*::selection{
+    background-color: #0A0025;
+    color: white;
+}
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+#container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    /* background-color: blue; */
+}
+
+#image {
+    height: 98%;
+    width: 50%;
+    /* background-color: teal; */
+
+}
+
+#image>img {
+    /* border-top-left-radius: 70%; */
+    border-bottom-right-radius: 70%;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.388);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    position: relative;
+    /* background-color: yellowgreen; */
+}
+
+#form-1 {
+    opacity: 1;
+    position: absolute;
+    width: 70%;
+    height: 90%;
+    padding: 5vw 2vw;
+    transition: all ease .2s;
+    /* background-color: #c09c9c; */
+
+}
+
+#form-1>.input {
+    position: relative;
+}
+
+#form-1>.input>input {
+    margin: 1vw 0;
+    width: 100%;
+    padding: .5vw 2.5vw;
+    padding-top: 2vw;
+    font-size: 1.3vw;
+    font-weight: 700;
+    color: #0A0025;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.653);
+    background-color: transparent;
+}
+
+#form-1>.input>input:focus {
+    color: #0063C1;
+    border-bottom: 2px solid #0063C1;
+}
+
+#form-1>.input>input::placeholder {
+    transition: all ease-in-out .2s;
+}
+
+#form-1>.input>input:focus::placeholder {
+    transform: translateY(-1.8vw);
+    font-size: .8vw;
+}
+
+/* form>.input>.right {
+    position: absolute;
+    right: 1vw;
+    top: 1.5vw;
+    font-size: 1.3vw;
+} */
+
+#form-1>.input>.left {
+    position: absolute;
+    left: .6vw;
+    top: 3.3vw;
+    font-size: 1.3vw;
+}
+
+/* btn login  css*/
+#form-1>input {
+    margin: .5vw 0;
+    margin-top: 3vw;
+    width: 100%;
+    padding: .5vw 2.5vw;
+    font-size: 1.5vw;
+    border-radius: 1vw;
+    outline: none;
+    border: none;
+    background-color: #0A0025;
+    color: #fff;
+    cursor: pointer;
+    transition: all ease .2s;
+}
+
+#form-1>input:hover {
+    background-color: #0063C1;
+}
+
+/* text css */
+#form-1>h1 {
+    font-size: 3vw;
+    margin-top: 2vw;
+    color: #0A0025;
+    text-transform: uppercase;
+}
+
+#form-1>h5 {
+    font-size: 1vw;
+    color: #0A0025;
+    margin: 0vw 7vw;
+    margin-top: 5.5vw;
+}
+
+#form-1>h5>span {
+    color: #0360C1;
+    cursor: pointer;
+}
+
+/* Register form 2  */
+
+#form-2{
+    z-index: -1;
+    transform: translateX(5vw);
+    opacity: 0;
+    position: absolute;
+    width: 70%;
+    height: 90%;
+    padding: .3vw 2vw;
+    transition: all ease .2s;
+    /* background-color: #c09c9c; */
+
+}
+
+#form-2>.input {
+    position: relative;
+}
+
+#form-2>.input>input {
+    margin: 1vw 0;
+    width: 100%;
+    padding: .5vw 2.5vw;
+    padding-top: 2vw;
+    font-size: 1.3vw;
+    font-weight: 700;
+    color: #0A0025;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.653);
+    background-color: transparent;
+}
+
+#form-2>.input>input:focus {
+    color: #0063C1;
+    border-bottom: 2px solid #0063C1;
+}
+
+#form-2>.input>input::placeholder {
+    transition: all ease-in-out .2s;
+}
+
+#form-2>.input>input:focus::placeholder {
+    transform: translateY(-1.8vw);
+    font-size: .8vw;
+}
+
+/* form>.input>.right {
+    position: absolute;
+    right: 1vw;
+    top: 1.5vw;
+    font-size: 1.3vw;
+} */
+
+#form-2>.input>.left {
+    position: absolute;
+    left: .6vw;
+    top: 3.3vw;
+    font-size: 1.3vw;
+}
+
+/* btn login  css*/
+#form-2>input {
+    margin: .5vw 0;
+    margin-top: 1.2vw;
+    width: 100%;
+    padding: .5vw 2.5vw;
+    font-size: 1.5vw;
+    border-radius: 1vw;
+    outline: none;
+    border: none;
+    background-color: #0A0025;
+    color: #fff;
+    cursor: pointer;
+    transition: all ease .2s;
+}
+
+#form-2>input:hover {
+    background-color: #0063C1;
+}
+
+/* text css */
+#form-2>h1 {
+    font-size: 2vw;
+    margin-top: 1vw;
+    color: #0A0025;
+    text-transform: uppercase;
+}
+
+#form-2>h5 {
+    font-size: 1vw;
+    color: #0A0025;
+    margin: 2vw 7vw;
+}
+
+#form-2>h5>span {
+    color: #0360C1;
+    cursor: pointer;
+
+}
+
+
+
+@media (max-width:800px) {
+    /* #image{
+        display: flex;
+        align-items: center;
+
+    } */
+    #image>img{
+        border-bottom-right-radius: 100%;
+    }
+    #form-1 {
+        margin-top: 5vw;
+        opacity: 1;
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        padding-top: 20vw;
+    }
+    #form-1>.input>input {
+        font-size: 3.5vw;
+        padding-left: 7vw;
+        padding-top: 2.8vw;
+    }
+    #form-1>.input>input:focus::placeholder {
+        transform: translateY(-4.5vw);
+        font-size: 2.4vw;
+    }
+    #form-1>.input>.left {
+        position: absolute;
+        left: .5vw;
+        top: 4.5vw;
+        font-size: 4vw;
+    }
+    #form-1>input {
+        font-size: 5vw;   
+    }
+    #form-1>h1 {
+        font-size: 6vw;
+        margin-top: 2vw;
+        color: #0A0025;
+        text-transform: uppercase;
+    }
+    
+    #form-1>h5 {
+        font-size: 2.5vw;
+        color: #0a0025bf;
+        margin: 8vw 0vw;
+    }
+    
+    #form-1>h5>span {
+        color: #0360C1;
+        cursor: pointer;
+    }
+    /* form 2 register  */
+    #form-2 {
+        margin-top: 5vw;
+        opacity: 0;
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        padding-top: 10vw;
+    }
+    #form-2>.input>input {
+        font-size: 3.5vw;
+        padding-left: 7vw;
+        padding-top: 3vw;
+    }
+    #form-2>.input>input:focus::placeholder {
+        transform: translateY(-4.5vw);
+        font-size: 2.4vw;
+    }
+    #form-2>.input>.left {
+        position: absolute;
+        left: .5vw;
+        top: 4.5vw;
+        font-size: 4vw;
+    }
+    #form-2>input {
+        font-size: 5vw;   
+    }
+    #form-2>h1 {
+        font-size: 4vw;
+        margin-top: 2vw;
+        color: #0A0025;
+        text-transform: uppercase;
+    }
+    
+    #form-2>h5 {
+        font-size: 2.5vw;
+        color: #0a0025bf;
+        margin: 8vw 0vw;
+    }
+    
+    #form-2>h5>span {
+        color: #0360C1;
+        cursor: pointer;
+    }
+}
+@media (max-width:600px) {
+    /* #image{
+        display: flex;
+        align-items: center;
+
+    } */
+    #image{
+        width: 0vw;
+    }
+    #content{
+        width: 100%;
+    }
+    #form-1 {
+        margin-top: 5vw;
+        opacity: 1;
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        padding-top: 15vw;
+    }
+    #form-1>.input{
+        margin: 5vw 0vw;
+    }
+    #form-1>.input>input {
+        font-size: 6vw;
+        padding-left: 10vw;
+        padding-top: 8vw;
+        /* background-color: blue; */
+    }
+    #form-1>.input>input:focus::placeholder {
+        transform: translateY(-7vw);
+        font-size: 4vw;
+    }
+    #form-1>.input>.left {
+        position: absolute;
+        left: 1vw;
+        top: 9.8vw;
+        font-size: 6vw;
+    }
+    #form-1>input {
+        font-size: 8vw;   
+    }
+    #form-1>h1 {
+        font-size: 8vw;
+        margin-top: 4vw;
+        color: #0A0025;
+        text-transform: uppercase;
+    }
+    
+    #form-1>h5 {
+        font-size: 5vw;
+        color: #0a0025bf;
+        margin-top: 20vw;
+    }
+    
+    #form-1>h5>span {
+        color: #0360C1;
+        cursor: pointer;
+    }
+
+    /* form 2 css  */
+    #form-2 {
+        margin-top: 5vw;
+        opacity: 0;
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        padding-top: 10vw;
+    }
+    #form-2>.input>input {
+        font-size: 7vw;
+        padding-left: 10vw;
+        padding-top: 8vw;
+    }
+    #form-2>.input>input:focus::placeholder {
+        transform: translateY(-7vw);
+        font-size: 4vw;
+    }
+    #form-2>.input>.left {
+        position: absolute;
+        left: 1vw;
+        top: 9.8vw;
+        font-size: 6vw;
+    }
+    #form-2>input {
+        font-size: 8vw; 
+        margin-top: 10vw;  
+    }
+    #form-2>h1 {
+        font-size: 7vw;
+        margin-top: 3vw;
+        color: #0A0025;
+        text-transform: uppercase;
+    }
+    
+    #form-2>h5 {
+        font-size: 5vw;
+        color: #0a0025bf;
+        margin-top: 20vw ;
+    }
+    
+    #form-2>h5>span {
+        color: #0360C1;
+        cursor: pointer;
+    }
+}

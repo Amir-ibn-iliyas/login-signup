@@ -1,0 +1,169 @@
+parvez bhai frontend code for login signup ////
+
+const registerButtonHandler = (e) => {
+        e.preventDefault();
+        setButtonLoading(true)
+        if (firstname.length < 3 || !validateEmail(email)) {
+            setErrorSnackbarOpen(true);
+            setButtonLoading(false);
+            setErrorMessage('Enter valid name and email');
+            return;
+        }
+        else {
+            if (validatePW(password)) {
+                fetch(`${REACT_APP_SERVER_URL}/register`, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    method: 'POST',
+                    credentials: 'include',
+                    body: new URLSearchParams({
+                        'firstName': firstname,
+                        'lastName': lastname,
+                        'password': password,
+                        'email': email,
+                    })
+                })
+                    .then(response => {
+                        console.log("response", response);
+                        if (response.status === 200) {
+                            console.log('register successfully')
+                            setButtonLoading(false)
+                            props.User(response.data)
+                            setSuccessSnackbarOpen(true)
+                            setTimeout(() => {
+                                navigate('/dashboard/home')
+                            }, 5000)
+                            return response.json()
+                        } else {
+                            console.log('register failed')
+                            setButtonLoading(false)
+                            setErrorSnackbarOpen(true)
+                            return response.json()
+                        }
+                    }).then(data => {
+                        console.log(data);
+                        setErrorMessage(data.msg)
+                        setSuccessMessage(data.msg)
+                    })
+            } else {
+                setButtonLoading(false);
+                setErrorSnackbarOpen(true);
+                setErrorMessage("Enter Valid Password");
+            }
+        }
+    }
+
+
+
+
+parvez bhai backend code for login signup
+
+
+
+exports.register = async (req, res) => {
+    var password = req.body.password;
+    const email = req.body.email
+    var uname = crypto.randomBytes(20).toString('hex')
+    password = password.toString();
+    const saltRounds = 15;
+    const hash = bcrypt.hashSync(password, saltRounds);
+    // let dataaa = await db.User.findAll({ where: {} })
+    //     .then(data1 => {
+    //          log.dev('data1 ', data1);
+    //     })
+    //     .catch(console.error())
+    const user = await db.User.findOne({ where: { email: email } })
+
+    if (!user) {
+        var data = {
+            userName: uname,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: email,
+            password: hash
+        }
+        console.log(data);
+        try {
+            await db.User.create(data)
+                .then(async (userData) => {
+                    userData = JSON.parse(JSON.stringify(userData))
+                    var forgetToken = crypto.randomBytes(20).toString('hex');
+                    var f = {
+                        userId: userData.id,
+                        email: userData.email,
+                        token: forgetToken,
+                        verified: 0
+                    }
+                    log.dev('f==>', f);
+                    // return response.throw(200, "verification email has been sent to your email id", "hello", res)
+                    // return res.status(200).send({"ok":"dfsdfds"})
+                    try {
+                        // log.dev('forgetPassword:', db.forgetPassword);
+                        db.forgetPassword.create(f)
+                            .then(async (fData) => {
+                                fData = JSON.parse(JSON.stringify(fData))
+                                // log.dev('fData:', fData);
+                                const link = process.env.React_ORIGIN + "/verify-account/" + userData.userName + "/"
+                                const Data = {
+                                    email: email,
+                                    link: link
+                                }
+                                try {
+                                    await nodemailer.transporter(Data)
+                                        .then(async () => {
+                                            log.dev("verification email has been sent to your email id");
+                                            await db.User.findOne({ where: { email: email } })
+                                                .then(async (u) => {
+                                                    let details = {
+                                                        username: u.userName,
+                                                        firstname: u.firstName,
+                                                        lastname: u.lastName,
+                                                        email: u.email,
+                                                        role: u.role,
+                                                        test: 'from register',
+                                                        emailverified:u.email_verified
+                                                    };
+
+                                                    let token = await tokenGen.getToken(details);
+                                                    res.cookie("token", token);
+                                                    return response.throw(200, "verification email has been sent to your email id", data, res)
+                                                })
+                                                .catch((err) => {
+                                                    console.log("erererere:", err);
+                                                    return res.status(203).send('problem while adding')
+                                                })
+
+                                        })
+                                } catch (error) {
+                                    log.dev(error);
+                                    return response.throw(202, "Something went please try again!", error, res)
+                                }
+                            })
+                            .catch((err) => {
+                                log.dev("errrrrrrr:", err);
+                            })
+                    }
+                    catch (err) {
+                        log.dev('eeeeerrr:', err);
+                    }
+
+                })
+                .catch((error) => {
+                    log.dev("somwthing went wrong with user.create", error)
+                    return response.throw(202, "Something went please try again!", error, res)
+                })
+        } catch (error) {
+            log.dev(error);
+            // return res.status(202).send("Something went please try again!!!")
+            return response.throw(202, "Something went please try again!", error, res)
+        }
+    } else {
+        log.dev("user already exist");
+        // return res.status(201).send(response);
+        // return res.status(201).send("user already exist")
+        return response.throw(201, "user already exist", "", res)
+    }
+}
+
